@@ -52,6 +52,18 @@ docker-compose down
 docker-compose logs -f api
 ```
 
+### Вирішення проблем
+
+Якщо виникає помилка збірки:
+```bash
+# Очистити кеш Docker
+docker system prune -a
+
+# Перезапустити збірку
+docker-compose build --no-cache
+docker-compose up -d
+```
+
 ## Запуск локально
 
 ### Вимоги
@@ -65,6 +77,7 @@ docker-compose logs -f api
 3. Налаштуйте connection string в `appsettings.json`
 4. Запустіть проект:
    ```bash
+   cd MarketAssetsApi
    dotnet run
    ```
 
