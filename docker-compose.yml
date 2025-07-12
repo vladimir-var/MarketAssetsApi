@@ -17,7 +17,7 @@ services:
       retries: 3
 
   postgres:
-    image: postgres:17
+    image: postgres:16
     environment:
       POSTGRES_DB: marketassetsdb
       POSTGRES_USER: postgres

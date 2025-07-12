@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY ["MarketAssetsApi/MarketAssetsApi.csproj", "MarketAssetsApi/"]
+COPY ["MarketAssetsApi.csproj", "MarketAssetsApi/"]
 RUN dotnet restore "MarketAssetsApi/MarketAssetsApi.csproj"
 COPY . .
 WORKDIR "/src/MarketAssetsApi"
