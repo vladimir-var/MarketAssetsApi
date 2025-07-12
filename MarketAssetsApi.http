@@ -1,0 +1,6 @@
+@MarketAssetsApi_HostAddress = http://localhost:5049
+
+GET {{MarketAssetsApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
