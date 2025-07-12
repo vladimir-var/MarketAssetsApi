@@ -47,7 +47,6 @@ namespace MarketAssetsApi.Services
                     using var ws = new ClientWebSocket();
                     await ws.ConnectAsync(new Uri(wsUri), stoppingToken);
 
-                    // Підписка на всі активи через l1-subscription
                     foreach (var asset in assets)
                     {
                         if (string.IsNullOrEmpty(asset.InstrumentId) || string.IsNullOrEmpty(asset.Provider))

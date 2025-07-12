@@ -15,7 +15,6 @@ namespace MarketAssetsApi.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // Автоматично всі імена таблиць, стовпців, ключів та індексів у нижньому регістрі
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
                 entity.SetTableName(entity.GetTableName().ToLower());

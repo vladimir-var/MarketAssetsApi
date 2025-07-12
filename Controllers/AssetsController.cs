@@ -17,7 +17,6 @@ namespace MarketAssetsApi.Controllers
             _context = context;
         }
 
-        // GET: api/assets
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Asset>>> GetAssets()
         {

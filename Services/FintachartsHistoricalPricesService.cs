@@ -65,7 +65,6 @@ namespace MarketAssetsApi.Services
                                 updatedAt = updatedAt.ToUniversalTime();
                             else if (updatedAt.Kind == DateTimeKind.Unspecified)
                                 updatedAt = DateTime.SpecifyKind(updatedAt, DateTimeKind.Utc);
-                            // Уникаємо дублювання
                             bool exists = await db.Prices.AnyAsync(p => p.AssetId == asset.Id && p.UpdatedAt == updatedAt, stoppingToken);
                             if (!exists)
                             {
@@ -85,7 +84,7 @@ namespace MarketAssetsApi.Services
                 {
                     _logger.LogError(ex, "Помилка при оновленні історичних цін з Fintacharts");
                 }
-                await Task.Delay(TimeSpan.FromHours(6), stoppingToken); // Оновлювати раз на 6 годин
+                await Task.Delay(TimeSpan.FromHours(6), stoppingToken);
             }
         }
     }

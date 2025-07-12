@@ -40,7 +40,6 @@ namespace MarketAssetsApi.Services
                     var token = await _authService.GetAccessTokenAsync();
                     var instruments = new List<Asset>();
 
-                    // 1. Отримати список провайдерів
                     var providersUri = "https://platform.fintacharts.com/api/instruments/v1/providers";
                     var providersRequest = new HttpRequestMessage(HttpMethod.Get, providersUri);
                     providersRequest.Headers.Add("Authorization", $"Bearer {token}");
@@ -65,7 +64,6 @@ namespace MarketAssetsApi.Services
                         _logger.LogInformation($"Отримано відповідь від Fintacharts для провайдера {provider}: {json}");
                         var doc = JsonDocument.Parse(json);
 
-                        // 1. Якщо є поле data і воно масив — парсимо його
                         if (doc.RootElement.TryGetProperty("data", out var data) && data.ValueKind == JsonValueKind.Array)
                         {
                             foreach (var item in data.EnumerateArray())
@@ -94,7 +92,6 @@ namespace MarketAssetsApi.Services
                             }
                             _logger.LogInformation($"Знайдено {instruments.Count} інструментів у data для провайдера {provider}");
                         }
-                        // 2. Якщо масив на верхньому рівні
                         else if (doc.RootElement.ValueKind == JsonValueKind.Array)
                         {
                             foreach (var item in doc.RootElement.EnumerateArray())
@@ -123,7 +120,6 @@ namespace MarketAssetsApi.Services
                             }
                             _logger.LogInformation($"Знайдено {instruments.Count} інструментів у кореневому масиві для провайдера {provider}");
                         }
-                        // 3. Інакше — логування
                         else
                         {
                             _logger.LogWarning($"Не знайдено масиву активів у відповіді Fintacharts для провайдера {provider}. Структура відповіді: {{Structure}}", doc.RootElement.ValueKind);
@@ -131,7 +127,6 @@ namespace MarketAssetsApi.Services
                         }
                     }
 
-                    // Синхронізація: додаємо нові, не видаляємо старі (можна розширити)
                     foreach (var asset in instruments)
                     {
                         if (!await db.Assets.AnyAsync(a => a.Symbol == asset.Symbol && a.Provider == asset.Provider, stoppingToken))
@@ -146,7 +141,7 @@ namespace MarketAssetsApi.Services
                 {
                     _logger.LogError(ex, "Помилка синхронізації активів з Fintacharts");
                 }
-                await Task.Delay(TimeSpan.FromHours(1), stoppingToken); // Оновлювати раз на годину
+                await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
             }
         }
     }

@@ -19,7 +19,6 @@ namespace MarketAssetsApi.Controllers
             _context = context;
         }
 
-        // GET: api/prices?assets=EUR/USD,GOOG
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetPrices([FromQuery] string assets)
         {
