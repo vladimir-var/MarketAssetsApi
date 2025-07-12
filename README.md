@@ -31,9 +31,9 @@ REST API сервіс для отримання інформації про ці
    docker-compose up -d
    ```
 
-4. API буде доступне за адресою: `http://localhost:8080`
-5. Swagger документація: `http://localhost:8080/swagger`
-6. Health check: `http://localhost:8080/health`
+4. API буде доступне за адресою: `http://localhost:7031`
+5. Swagger документація: `http://localhost:7031/swagger`
+6. Health check: `http://localhost:7031/health`
 
 ### Що відбувається при запуску
 
