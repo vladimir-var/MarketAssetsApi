@@ -11,6 +11,7 @@ services:
         condition: service_healthy
     environment:
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=marketassetsdb;Username=postgres;Password=1234
+      - ASPNETCORE_ENVIRONMENT=Development
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/health"]
