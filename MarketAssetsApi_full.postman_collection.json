@@ -1,0 +1,40 @@
+{
+  "info": {
+    "_postman_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+    "name": "MarketAssetsApi (актуальна)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get all assets",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7031/api/assets",
+          "protocol": "https",
+          "host": ["localhost"],
+          "port": "7031",
+          "path": ["api", "assets"]
+        }
+      }
+    },
+    {
+      "name": "Get prices for assets",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7031/api/prices?assets=EUR/USD,GOOG",
+          "protocol": "https",
+          "host": ["localhost"],
+          "port": "7031",
+          "path": ["api", "prices"],
+          "query": [
+            { "key": "assets", "value": "EUR/USD,GOOG" }
+          ]
+        }
+      }
+    }
+  ]
+} 
