@@ -34,6 +34,9 @@ using (var scope = app.Services.CreateScope())
     context.Database.EnsureCreated();
 }
 
+// Явно вказуємо порт 80 для Docker
+builder.WebHost.UseUrls("http://*:80");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
